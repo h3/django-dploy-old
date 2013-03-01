@@ -6,7 +6,7 @@ from django_dploy.utils import color as c
 
 class HelpCommand(BaseCommand):
     """
-    Show duke help.
+    Show dploy help.
     """
 
     options = []
