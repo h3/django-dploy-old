@@ -24,8 +24,10 @@ $ dploy django:"collectstatic -lqy" on beta,prod
 """
 
 def main():
-    parser = OptionParser(version="%%prog %s" % VERSION)
-    cmd  = sys.argv[1]
+    options = {}
+    return Dploy(options).run()
+#   parser = OptionParser(version="%%prog %s" % VERSION)
+   #cmd  = sys.argv[1]
 
    #for opts in get_command_options(cmd):
    #    if isinstance(opts[1], dict): # ex: -h
@@ -33,9 +35,8 @@ def main():
    #    else: # ex: -h, --help
    #       parser.add_option(opts[0], opts[1], **opts[2])
 
-    (options, args) = parser.parse_args()
+   #(options, args) = parser.parse_args()
 
-    return Dploy(options).run()
 #   command_list = (
 #       'init',
 #       'help',
