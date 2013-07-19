@@ -1,6 +1,8 @@
 import os
 import sys
 import yaml
+import subprocess
+import IPython
 
 
 class Dploy(object):
@@ -46,9 +48,22 @@ class Dploy(object):
             stream = file(p, 'r')
             setattr(self, spec, yaml.load(stream))
 
-
     def call(self, command, stage):
         print 'Executing task: %s on stage "%s"' % (command, stage)
+        if not self.commands.get(stage):
+            print "Error: stage not found"
+            sys.exit(1)
+        else:
+            commands = self.commands.get(stage)
+            if commands.get(command):
+                for cmd in commands.get(command):
+                    if stage == 'dev':
+                        rc = subprocess.call(cmd, shell=True)
+                    else:
+                        # TODO: Fabric
+                        rc = 1
+            else:
+                print "Error: unknown command"
 
     def run(self):
         sys.exit(0)
